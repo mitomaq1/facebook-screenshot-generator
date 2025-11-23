@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { AppState, Profile, Post, defaultProfile } from '../types/facebook';
+import { AppState, defaultProfile } from '../types/facebook';
 
 export const useStore = create<AppState>((set) => ({
   profile: { ...defaultProfile },
@@ -15,7 +15,7 @@ export const useStore = create<AppState>((set) => ({
       posts: [
         {
           ...postData,
-          id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+          id: Date.now().toString() + Math.random().toString(36).substring(2, 11),
         },
         ...state.posts,
       ],

@@ -20,7 +20,7 @@ export const PostEditor = () => {
     const file = e.target.files?.[0];
     if (file) {
       handleImageUpload(file, (dataUrl) => {
-        setFormData({ ...formData, image: dataUrl });
+        setFormData((prev) => ({ ...prev, image: dataUrl }));
       });
     }
   };
@@ -80,7 +80,7 @@ export const PostEditor = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">Post Text</label>
           <textarea
             value={formData.text}
-            onChange={(e) => setFormData({ ...formData, text: e.target.value })}
+            onChange={(e) => setFormData((prev) => ({ ...prev, text: e.target.value }))}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fb-blue"
             placeholder="What's on your mind?"
             rows={4}
@@ -115,7 +115,7 @@ export const PostEditor = () => {
               type="number"
               min="0"
               value={formData.likes}
-              onChange={(e) => setFormData({ ...formData, likes: parseInt(e.target.value) || 0 })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, likes: parseInt(e.target.value) || 0 }))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fb-blue"
             />
           </div>
@@ -125,7 +125,7 @@ export const PostEditor = () => {
               type="number"
               min="0"
               value={formData.comments}
-              onChange={(e) => setFormData({ ...formData, comments: parseInt(e.target.value) || 0 })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, comments: parseInt(e.target.value) || 0 }))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fb-blue"
             />
           </div>
@@ -135,7 +135,7 @@ export const PostEditor = () => {
               type="number"
               min="0"
               value={formData.shares}
-              onChange={(e) => setFormData({ ...formData, shares: parseInt(e.target.value) || 0 })}
+              onChange={(e) => setFormData((prev) => ({ ...prev, shares: parseInt(e.target.value) || 0 }))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fb-blue"
             />
           </div>
@@ -146,7 +146,7 @@ export const PostEditor = () => {
           <input
             type="datetime-local"
             value={formData.timestamp.slice(0, 16)}
-            onChange={(e) => setFormData({ ...formData, timestamp: new Date(e.target.value).toISOString() })}
+            onChange={(e) => setFormData((prev) => ({ ...prev, timestamp: new Date(e.target.value).toISOString() }))}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fb-blue"
           />
         </div>

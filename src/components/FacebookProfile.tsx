@@ -14,6 +14,9 @@ export const FacebookProfile = () => {
             src={profile.coverPhoto}
             alt="Cover"
             className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400" />
@@ -28,6 +31,9 @@ export const FacebookProfile = () => {
                   src={profile.profilePicture}
                   alt={profile.name}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-500 text-4xl font-semibold">

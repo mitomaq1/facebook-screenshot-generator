@@ -17,6 +17,9 @@ export const FacebookPost = ({ post }: FacebookPostProps) => {
               src={post.authorAvatar}
               alt={post.author}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm font-semibold">
@@ -52,6 +55,9 @@ export const FacebookPost = ({ post }: FacebookPostProps) => {
             src={post.image}
             alt="Post"
             className="w-full max-h-96 object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         </div>
       )}

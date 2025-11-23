@@ -11,13 +11,29 @@ export const exportAsImage = async (
   }
 
   try {
+    // Wait for images to load
+    const images = element.querySelectorAll('img');
+    await Promise.all(
+      Array.from(images).map((img) => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+          setTimeout(resolve, 2000); // Timeout after 2 seconds
+        });
+      })
+    );
+
     const canvas = await html2canvas(element, {
       backgroundColor: '#f3f4f6',
       scale: 2,
       useCORS: true,
+      allowTaint: true,
       logging: false,
       width: element.scrollWidth,
       height: element.scrollHeight,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight,
     });
 
     const dataUrl = canvas.toDataURL('image/png', 1.0);
